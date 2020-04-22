@@ -23,7 +23,9 @@ pipeline {
             tagFilter: '*', 
             type: 'PT_BRANCH'
     }
-
+    agent {
+        label 'Local-Jenkins'
+    }
     stages {
         stage('Checkout') {
             steps {
