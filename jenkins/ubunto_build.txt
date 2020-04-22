@@ -16,15 +16,15 @@ pipeline {
     }
 
     parameters {
-        choice(name: 'build_configuration_type',
+        choice(name: 'build_type',
             choices: 'All\nDebug\nRelease',
             description: 'Which configuration do you want to build?')
 
-        booleanParam(name: 'is_symbols_build',
+        booleanParam(name: 'is_symbols',
 	        defaultValue: true,
             description: 'Build with symbols information')
 
-        booleanParam(name: 'is_log_messages_build',
+        booleanParam(name: 'is_log_messages',
 	        defaultValue: false,
             description: 'Build with debug log messages')
 
