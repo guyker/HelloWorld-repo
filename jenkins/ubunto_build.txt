@@ -85,9 +85,11 @@ pipeline {
         stage ('Build') {
             steps {
                 sh '''#!/bin/bash
-  				if [ $DEBUG_BUILD == "true" ]
-  				  echo "foo---DEBUG!!!!!!!!!!!!!"
-				fi
+  				
+  					if [ $DEBUG_BUILD == "true" ]
+  					then
+  				  	    echo "foo---DEBUG!!!!!!!!!!!!!"
+					fi
 
 
                     pwd
