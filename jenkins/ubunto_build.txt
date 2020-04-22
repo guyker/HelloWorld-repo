@@ -75,24 +75,6 @@ pipeline {
                 '''
             }
         }
-
-        stage ('Set local properties') {
-            steps {
-                sh '''
-                    #rm -f local.properties
-                    #echo ndk.dir=${ANDROID_NDK} >> local.properties
-                '''
-            }
-        }
-    }
-
-    post {
-        always {
-            script {
-
-                #manager.addShortText("v" + env['BUILD_NUMBER'] + " on branch: " + env['BRANCH'])
-            }
-        }
     }
 }
 
