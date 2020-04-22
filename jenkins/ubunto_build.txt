@@ -18,8 +18,7 @@ pipeline {
     parameters {
         choice(name: 'build_configuration_type',
             choices: 'All\nDebug\nRelease',
-            description: 'Which configuration do you want to build?'),
-            defaultValue: 'All'
+            description: 'Which configuration do you want to build?')
 
         booleanParam(name: 'is_symbols_build',
 	        defaultValue: true,
