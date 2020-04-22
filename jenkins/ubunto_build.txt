@@ -5,6 +5,7 @@ pipeline {
         COMPILED_BRANCH=""
         PARENT_BUILD=""
         BUILD_VERSION_JENKINS=""
+        BUILTE_CONFIGURATION=
     }
 
     options {
@@ -43,10 +44,20 @@ pipeline {
     stages {
         stage('Config check') {
             steps {
+            	withEnv(["key1=$params.is_log_messages_build"])
                 echo 'Build parameters:'
                 echo "build configuration: ${params.build_configuration_type}"
                 echo "Debug logs: ${params.is_log_messages_build}"
                 echo "Symbols: ${params.is_symbols_build}"
+
+                
+                script {
+                    if ("${params.build_type}" == "All") {
+                        currentBuild.result = 'ABORTED'
+			echo "---xxxxxxxxxxxxx--------"
+                        error('DRY RUN COMPLETED. JOB PARAMETERIZED.')
+                    }
+                }
             }
         }
 
@@ -93,6 +104,9 @@ pipeline {
                     cd src
                     gcc -v HelloWorld.cpp -o runme
                     env
+
+                    echo "SymbolsXXXXXXXXXXXX: ${params.is_symbols_build}"
+
                 '''
             }
         }
