@@ -52,6 +52,8 @@ pipeline {
                 
                 script {
                     if ("${params.build_type}" == "All") {
+                    	DEBUG_BUILD=true
+                    	RELEASE_BUILD=true
                         currentBuild.result = 'ABORTED'
 						echo "---xxxxxxxxxxxxx--------"
                         error('DRY RUN COMPLETED. JOB PARAMETERIZED.')
@@ -83,6 +85,11 @@ pipeline {
         stage ('Build') {
             steps {
                 sh '''#!/bin/bash
+  				if [ $DEBUG_BUILD == "true" ]
+  				  echo "foo---DEBUG!!!!!!!!!!!!!"
+				fi
+
+
                     pwd
 
                     date
