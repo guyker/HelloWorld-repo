@@ -18,19 +18,20 @@ pipeline {
     parameters {
         choice(name: 'build_configuration_type',
             choices: 'All\nDebug\nRelease',
-            description: 'Which configuration do you want to build?')
+            description: 'Which configuration do you want to build?'),
+            defaultValue: 'All'
 
         booleanParam(name: 'is_symbols_build',
-	        default: true,
+	        defaultValue: true,
             description: 'Build with symbols information')
-            
+
         booleanParam(name: 'is_log_messages_build',
-	        default: false,
+	        defaultValue: false,
             description: 'Build with debug log messages')
 
         gitParameter branch: '.*',
             branchFilter: '.*',
-            defaultValue: 'develop', 
+            defaultValue: 'master', 
             description: '', 
             name: 'BRANCH', 
             quickFilterEnabled: true, 
