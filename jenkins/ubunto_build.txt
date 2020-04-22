@@ -90,7 +90,7 @@ pipeline {
         always {
             script {
 
-                manager.addShortText("v" + env['BUILD_NUMBER'] + " on branch: " + env['BRANCH'])
+                #manager.addShortText("v" + env['BUILD_NUMBER'] + " on branch: " + env['BRANCH'])
             }
         }
     }
