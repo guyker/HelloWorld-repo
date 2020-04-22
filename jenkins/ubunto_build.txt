@@ -52,7 +52,7 @@ pipeline {
                 
                 script {
                     if ("${params.build_type}" == "All") {
-                    	DEBUG_BUILD=true
+                    	IS_DEBUG_BUILD=true
                     	RELEASE_BUILD=true
                         currentBuild.result = 'ABORTED'
 						echo "---xxxxxxxxxxxxx--------"
@@ -86,7 +86,7 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
   				
-  					if [ "$DEBUG_BUILD" == "true" ]
+  					if [ "$IS_DEBUG_BUILD" == "true" ]
   					then
   				  	    echo "foo---DEBUG!!!!!!!!!!!!!"
 					fi
@@ -113,7 +113,6 @@ pipeline {
                     gcc -v HelloWorld.cpp -o runme
                     env
 
-                    echo "SymbolsXXXXXXXXXXXX: ${params.is_symbols_build}"
 
                 '''
             }
