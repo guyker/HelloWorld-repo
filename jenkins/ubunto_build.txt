@@ -45,9 +45,9 @@ pipeline {
         stage('Config check') {
             steps {
                 echo 'Build parameters:'
-                echo "build configuration: ${params.build_configuration_type}"
-                echo "Debug logs: ${params.is_log_messages_build}"
-                echo "Symbols: ${params.is_symbols_build}"
+                echo "build configuration: ${params.build_type}"
+                echo "Debug logs: ${params.is_log_messages}"
+                echo "Symbols: ${params.is_symbols}"
 
                 
                 script {
