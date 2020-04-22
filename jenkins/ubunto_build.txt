@@ -86,7 +86,7 @@ pipeline {
             steps {
                 sh '''#!/bin/bash
   				
-  					if [ "$IS_DEBUG_BUILD" == "true" ]
+  					if [ "$build_type" == "Debug" ]
   					then
   				  	    echo "foo---DEBUG!!!!!!!!!!!!!"
 					fi
