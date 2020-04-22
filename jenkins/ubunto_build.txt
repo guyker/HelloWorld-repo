@@ -5,7 +5,7 @@ pipeline {
         COMPILED_BRANCH=""
         PARENT_BUILD=""
         BUILD_VERSION_JENKINS=""
-        BUILTE_CONFIGURATION=
+        BUILTE_CONFIGURATION=""
     }
 
     options {
