@@ -1,0 +1,90 @@
+pipeline {
+    environment {
+        COMPILED_BRANCH=""
+        PARENT_BUILD=""
+        BUILD_VERSION_JENKINS=""
+    }
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder logRotator(artifactDaysToKeepStr: '',
+             artifactNumToKeepStr: '', 
+             daysToKeepStr: '', 
+             numToKeepStr: '50')
+    }
+    parameters {
+        gitParameter branch: '.*',
+            branchFilter: '.*',
+            defaultValue: 'develop', 
+            description: '', 
+            name: 'BRANCH', 
+            quickFilterEnabled: true, 
+            selectedValue: 'DEFAULT', 
+            sortMode: 'ASCENDING_SMART', 
+            tagFilter: '*', 
+            type: 'PT_BRANCH'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    def str = params.BRANCH
+                    BRANCH_NAME = str.substring(7)
+                }
+                git branch: "${BRANCH_NAME}" , url: 'git@github.com:guyker/HelloWorld-repo.git'
+                 
+            }
+        }
+        stage('Prepare environment variables') {
+            steps {
+                sh '''
+                    COMPILED_BRANCH="${GIT_BRANCH##origin/}"
+                    PARENT_BUILD=${BUILD_NUMBER}
+                '''
+            }
+        }
+        stage ('Build') {
+            steps {
+                sh '''#!/bin/bash
+                    pwd
+
+                    date
+                    pwd
+                    whoami
+
+                    echo $UID
+                    id
+
+                    git push --tags
+                    echo "----------------------------"
+
+                    #mkdir /tmp/HelloWorld
+                    #cd /tmp/HelloWorld
+
+                    #cd /home/guy/work/HelloWorld-repo
+
+                    cd src
+                    gcc -v HelloWorld.cpp -o runme
+                    env
+                '''
+            }
+        }
+        stage ('Set local properties') {
+            steps {
+                sh '''
+                    #rm -f local.properties
+                    #echo ndk.dir=${ANDROID_NDK} >> local.properties
+                '''
+            }
+        }
+    }
+    post {
+        always {
+            script {
+
+                manager.addShortText("v" + env['BUILD_NUMBER'] + " on branch: " + env['BRANCH'])
+            }
+        }
+    }
+}
+
