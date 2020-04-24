@@ -21,16 +21,12 @@ pipeline {
             choices: 'All\nDebug\nRelease',
             description: '-Which configuration do you want to build?')
 
-        booleanParam(name: 'target_iOS',
-            defaultValue: true)
-        booleanParam(name: 'target_Android',
-            defaultValue: true)
-        booleanParam(name: 'target_OSX',
-            defaultValue: true)
-        booleanParam(name: 'target_Windows',
-            defaultValue: true)
+        booleanParam(name: 'target_iOS',        defaultValue: true, description: '')
+        booleanParam(name: 'target_Android',    defaultValue: true, description: '')
+        booleanParam(name: 'target_OSX',        defaultValue: true, description: '')
+        booleanParam(name: 'target_Windows',    defaultValue: true, description: '')
 
-        text(name: 'build_comments', defaultValue: '', description: '') }
+        text(name: 'build_comments', defaultValue: '', description: '')
 
         gitParameter branch: '.*',
             branchFilter: '.*',
