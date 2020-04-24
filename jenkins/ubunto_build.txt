@@ -121,7 +121,7 @@ pipeline {
         }
 
         stage ('Build-Release') {
-            when (build_type == 'Debug') {
+            when (${params.build_type} == 'Debug') {
                 
             }
 
