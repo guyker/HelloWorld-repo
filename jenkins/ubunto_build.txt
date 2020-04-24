@@ -21,6 +21,15 @@ pipeline {
             choices: 'All\nDebug\nRelease',
             description: 'Which configuration do you want to build?')
 
+       booleanParam(name: 'target_iOS',
+            defaultValue: true)
+        booleanParam(name: 'target_Android',
+            defaultValue: true)
+        booleanParam(name: 'target_OSX',
+            defaultValue: true)
+        booleanParam(name: 'target_Windows',
+            defaultValue: true)
+            
         booleanParam(name: 'is_symbols',
 	        defaultValue: true,
             description: 'Build with symbols information')
