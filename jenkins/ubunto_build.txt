@@ -121,6 +121,10 @@ pipeline {
         }
 
         stage ('Build-Release') {
+            when (build_type != 'Debug') {
+                echo 'build n/a'
+            }
+
             steps {
                 sh '''#!/bin/bash
                 
