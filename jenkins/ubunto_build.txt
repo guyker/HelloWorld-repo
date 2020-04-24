@@ -82,7 +82,7 @@ pipeline {
             }
         }
 
-        stage ('Build') {
+        stage ('Build-Debug') {
             steps {
                 sh '''#!/bin/bash
   				
@@ -90,6 +90,45 @@ pipeline {
   					then
   				  	    echo "foo---DEBUG!!!!!!!!!!!!!"
 					fi
+
+
+                    pwd
+
+                    date
+                    pwd
+                    whoami
+
+                    echo $UID
+                    id
+
+                    git push --tags
+                    echo "----------------------------"
+
+                    #mkdir /tmp/HelloWorld
+                    #cd /tmp/HelloWorld
+
+                    #cd /home/guy/work/HelloWorld-repo
+
+                    cd src
+                    gcc -v HelloWorld.cpp -o runme
+                    env
+
+
+                '''
+            }
+            step {
+                pwd
+            }
+        }
+
+        stage ('Build-Release') {
+            steps {
+                sh '''#!/bin/bash
+                
+                    if [ "$build_type" == "Debug" ]
+                    then
+                        echo "foo---DEBUG!!!!!!!!!!!!!"
+                    fi
 
 
                     pwd
