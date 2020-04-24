@@ -19,7 +19,7 @@ pipeline {
     parameters {
         choice(name: 'build_type',
             choices: 'All\nDebug\nRelease',
-            description: '-Which configuration do you want to build?')
+            description: 'Select build configuration:')
 
         booleanParam(name: 'target_iOS',        defaultValue: true, description: '')
         booleanParam(name: 'target_Android',    defaultValue: true, description: '')
