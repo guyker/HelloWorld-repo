@@ -121,9 +121,7 @@ pipeline {
         }
 
         stage ('Build-Release') {
-            when (${params.build_type} == 'Debug') {
-                
-            }
+            #when (${params.build_type} == 'Debug') {    }
 
             steps {
                 sh '''#!/bin/bash
