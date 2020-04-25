@@ -83,7 +83,7 @@ pipeline {
 
         stage ('Build-Debug') {
             when {
-                expression { params.build_type != 'All' || params.build_type != 'Release' }
+                expression { params.build_type == 'All' || params.build_type == 'Release' }
             }
             steps {
                 sh '''#!/bin/bash
@@ -124,7 +124,7 @@ pipeline {
 
         stage ('Build-Release') {
             when {
-                expression { params.build_type != 'All' || params.build_type != 'Debug' }
+                expression { params.build_type == 'All' || params.build_type == 'Debug' }
             }
             steps {
                 sh '''#!/bin/bash
