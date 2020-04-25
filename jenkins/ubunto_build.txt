@@ -50,7 +50,7 @@ pipeline {
 
                 
                 script {
-                    if ("${params.build_type}" == "All") {
+                    if ("${params.build_type}" == "__All") {
                     	IS_DEBUG_BUILD=true
                     	RELEASE_BUILD=true
                         currentBuild.result = 'ABORTED'
