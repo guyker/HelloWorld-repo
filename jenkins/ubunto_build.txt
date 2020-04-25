@@ -82,10 +82,13 @@ pipeline {
         }
 
         stage ('Build-Debug') {
+            when {
+                expression { params.build_type != 'All' || params.build_type != 'Release' }
+            }
             steps {
                 sh '''#!/bin/bash
   				
-  					if [ "$build_type" == "Debug" ]
+  					if [ "$build_type" == "ALL" ] || [ "$build_type" == "Debug" ]
   					then
   				  	    echo "foo---DEBUG!!!!!!!!!!!!!"
 					fi
@@ -121,7 +124,7 @@ pipeline {
 
         stage ('Build-Release') {
             when {
-                expression { params.build_type != 'Debug' }
+                expression { params.build_type != 'All' || params.build_type != 'Debug' }
             }
             steps {
                 sh '''#!/bin/bash
