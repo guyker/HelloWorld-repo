@@ -77,6 +77,7 @@ pipeline {
                 sh '''
                     COMPILED_BRANCH="${GIT_BRANCH##origin/}"
                     PARENT_BUILD=${BUILD_NUMBER}
+                    git tag -a -f -m "Jenkins Build #NEXT" jenkins-HelloWorld_TAG
                 '''
             }
         }
