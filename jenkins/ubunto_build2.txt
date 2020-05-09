@@ -1,0 +1,156 @@
+pipeline {
+    agent any
+
+    environment {
+        COMPILED_BRANCH=""
+        PARENT_BUILD=""
+        BUILD_VERSION_JENKINS=""
+        BUILTE_CONFIGURATION=""
+    }
+
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder logRotator(artifactDaysToKeepStr: '',
+             artifactNumToKeepStr: '', 
+             daysToKeepStr: '', 
+             numToKeepStr: '50')
+    }
+
+    parameters {
+
+        gitParameter branch: '.*',
+            branchFilter: '.*',
+            defaultValue: 'master', 
+            description: '', 
+            name: 'BRANCH', 
+            quickFilterEnabled: true, 
+            selectedValue: 'DEFAULT', 
+            sortMode: 'ASCENDING_SMART', 
+            tagFilter: '*', 
+            type: 'PT_BRANCH'
+    }
+
+    stages {
+        stage('Config check') {
+            steps {
+                echo 'Build parameters:'
+                echo "build configuration: ${params.build_type}"
+                echo "Debug logs: ${params.is_log_messages}"
+                echo "Symbols: ${params.is_symbols}"
+
+                
+                script {
+                    if ("${params.build_type}" == "__All") {
+                    	IS_DEBUG_BUILD=true
+                    	RELEASE_BUILD=true
+                        currentBuild.result = 'ABORTED'
+						echo "---xxxxxxxxxxxxx--------"
+                        error('DRY RUN COMPLETED. JOB PARAMETERIZED.')
+                    }
+                }
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                script {
+                    def str = params.BRANCH
+                    BRANCH_NAME = str.substring(7)
+                }
+                git branch: "${BRANCH_NAME}" , url: 'git@github.com:guyker/HelloWorld-repo.git'
+                 
+            }
+        }
+
+        stage('Prepare environment variables') {
+            steps {
+                sh '''
+                    COMPILED_BRANCH="${GIT_BRANCH##origin/}"
+                    PARENT_BUILD=${BUILD_NUMBER}
+                    git tag -a -f -m "Jenkins Build #NEXT" jenkins-HelloWorld_TAG
+                '''
+            }
+        }
+
+        stage ('Build-Debug') {
+            when {
+                expression { params.build_type == 'All' || params.build_type == 'Release' }
+            }
+            steps {
+                sh '''#!/bin/bash
+  				
+  					if [ "$build_type" == "ALL" ] || [ "$build_type" == "Debug" ]
+  					then
+  				  	    echo "foo---DEBUG!!!!!!!!!!!!!"
+					fi
+
+
+                    pwd
+
+                    date
+                    pwd
+                    whoami
+
+                    echo $UID
+                    id
+
+                    git push --tags
+                    echo "----------------------------"
+
+                    #mkdir /tmp/HelloWorld
+                    #cd /tmp/HelloWorld
+
+                    #cd /home/guy/work/HelloWorld-repo
+
+                    cd src
+                    gcc -v HelloWorld.cpp -o runme
+                    env
+
+
+                '''
+            }
+
+         
+        }
+
+        stage ('Build-Release') {
+            when {
+                expression { params.build_type == 'All' || params.build_type == 'Debug' }
+            }
+            steps {
+                sh '''#!/bin/bash
+                
+                    if [ "$build_type" == "Debug" ]
+                    then
+                        echo "foo---DEBUG!!!!!!!!!!!!!"
+                    fi
+
+
+                    pwd
+
+                    date
+                    pwd
+                    whoami
+
+                    echo $UID
+                    id
+
+                    git push --tags
+                    echo "----------------------------"
+
+                    #mkdir /tmp/HelloWorld
+                    #cd /tmp/HelloWorld
+
+                    #cd /home/guy/work/HelloWorld-repo
+
+                    cd src
+                    gcc -v HelloWorld.cpp -o runme
+                    env
+
+
+                '''
+            }
+        }
+    }
+}
+

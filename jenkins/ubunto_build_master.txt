@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+
+    environment {
+        COMPILED_BRANCH=""
+        PARENT_BUILD=""
+        BUILD_VERSION_JENKINS=""
+        BUILTE_CONFIGURATION=""
+    }
+
+    options {
+        disableConcurrentBuilds()
+        buildDiscarder logRotator(artifactDaysToKeepStr: '',
+             artifactNumToKeepStr: '', 
+             daysToKeepStr: '', 
+             numToKeepStr: '50')
+    }
+
+    parameters {
+        choice(name: 'build_type',
+            choices: 'All\nDebug\nRelease',
+            description: 'Select build configuration:')
+
+        booleanParam(name: 'target_iOS',        defaultValue: true, description: '')
+        booleanParam(name: 'target_Android',    defaultValue: true, description: '')
+        booleanParam(name: 'target_OSX',        defaultValue: true, description: '')
+        booleanParam(name: 'target_Windows',    defaultValue: true, description: '')
+
+        text(name: 'build_comments', defaultValue: '', description: '')
+
+        gitParameter branch: '.*',
+            branchFilter: '.*',
+            defaultValue: 'master', 
+            description: '', 
+            name: 'BRANCH', 
+            quickFilterEnabled: true, 
+            selectedValue: 'DEFAULT', 
+            sortMode: 'ASCENDING_SMART', 
+            tagFilter: '*', 
+            type: 'PT_BRANCH'
+    }
+
+    stages {
+        stage('Config check') {
+            steps {
+                echo 'Build parameters:'
+                echo "build configuration: ${params.build_type}"
+                echo "Debug logs: ${params.is_log_messages}"
+                echo "Symbols: ${params.is_symbols}"
+
+                
+                script {
+                    if ("${params.build_type}" == "__All") {
+                    	IS_DEBUG_BUILD=true
+                    	RELEASE_BUILD=true
+                        currentBuild.result = 'ABORTED'
+						echo "---xxxxxxxxxxxxx--------"
+                        error('DRY RUN COMPLETED. JOB PARAMETERIZED.')
+                    }
+                }
+            }
+        }
+        stage('run build 1') {
+            steps {
+                echo 'BUILD1'
+            }
+        }
+    }
+}
+
