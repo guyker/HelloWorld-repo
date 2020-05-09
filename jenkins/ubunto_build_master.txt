@@ -75,9 +75,10 @@ pipeline {
             }
             post {
                 success {
-                    script {
-                        sh "echo 'PASS' >> tmp_build_comments"
-                    }
+                    sh '''
+                        #!/bin/bash
+                        echo "XXXX PASS" >> tmp_build_comments.txt"
+                    '''
                 }
                 unstable {
                     script {
@@ -117,6 +118,7 @@ pipeline {
                 #!/bin/bash
                 echo 'success - guy'
                 echo ${BUILD_COMMENTS}
+                cat tmp_build_comments.txt
 
             '''
 
