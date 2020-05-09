@@ -94,18 +94,21 @@ pipeline {
                 #git tag -m "$build_comments"  $VOXIP_BUILD_TAG $BRANCH
                 #git push origin refs/tags/$VOXIP_BUILD_TAG
             '''
-            script {
+ /*           script {
                 def env = manager.build.getEnvironment(manager.listener)
                 manager.addShortText("b"+ env['BUILD_NUMBER'])
                 manager.addShortText(env['BRANCH'])
             }
+*/
         }
         unsuccessful {
+        /*
             script {
                 def env = manager.build.getEnvironment(manager.listener)
                 manager.addShortText("Failed")
                 manager.addShortText(env['BRANCH'])
             }
+            */
         }
     }
 }
