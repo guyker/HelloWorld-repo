@@ -76,7 +76,7 @@ pipeline {
                 success {
                     sh '''
                         #!/bin/bash
-                        echo "XXXX PASS" >> tmp_build_comments1.txt"
+                        echo "XXXX PASS" >> tmp_build_comments1.txt
                     '''
                 }
                 unstable {
