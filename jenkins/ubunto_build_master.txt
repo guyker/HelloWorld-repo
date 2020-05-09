@@ -6,6 +6,7 @@ pipeline {
         PARENT_BUILD=""
         BUILD_VERSION_JENKINS=""
         BUILTE_CONFIGURATION=""
+        BUILD_COMMENTS=""
     }
 
     options {
@@ -72,6 +73,20 @@ pipeline {
                         string(name: 'build_type', value: "${params.build_type}")
                     ]        
             }
+            post {
+                success {
+                   BUILD_COMMENTS="PASS"
+               }
+                unstable {
+                    BUILD_COMMENTS="I am unstable"
+                }
+                failure {
+                    BUILD_COMMENTS="I failed :("
+                }
+                changed {
+                    BUILD_COMMENTS='Things were different before...
+                }                
+            }
         }
         stage('run build 1 DEBUG') {
             when {
@@ -94,18 +109,13 @@ pipeline {
                 #!/bin/bash
                 echo 'success - guy'
             '''
-            script {
-                def env = manager.build.getEnvironment(manager.listener)
-                manager.addShortText("b" + env['BUILD_NUMBER'])
-                manager.addShortText(env['BRANCH'])
-            }
+
         }
         unsuccessful {
-            script {
-                def env = manager.build.getEnvironment(manager.listener)
-                manager.addShortText("Build was unsuccessful")
-                manager.addShortText(env['BRANCH'])
-            }
+           sh '''
+                #!/bin/bash
+                echo 'success - guy'
+            '''
         }
     }
 }
