@@ -75,16 +75,24 @@ pipeline {
             }
             post {
                 success {
-                   BUILD_COMMENTS="PASS"
-               }
+                    script {
+                        BUILD_COMMENTS="PASS"
+                    }
+                }
                 unstable {
-                    BUILD_COMMENTS="I am unstable"
+                    script {
+                        BUILD_COMMENTS="UNSTABLE"
+                    }
                 }
                 failure {
-                    BUILD_COMMENTS="I failed :("
+                    script {
+                        BUILD_COMMENTS="FAILED"
+                    }
                 }
                 changed {
-                    BUILD_COMMENTS="Things were different before.."
+                    script {
+                        BUILD_COMMENTS="CHANGED"
+                    }
                 }                
             }
         }
