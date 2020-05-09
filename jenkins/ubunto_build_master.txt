@@ -84,7 +84,7 @@ pipeline {
                     BUILD_COMMENTS="I failed :("
                 }
                 changed {
-                    BUILD_COMMENTS='Things were different before...
+                    BUILD_COMMENTS="Things were different before.."
                 }                
             }
         }
