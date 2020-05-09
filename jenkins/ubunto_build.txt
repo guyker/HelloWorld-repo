@@ -17,17 +17,7 @@ pipeline {
     }
 
     parameters {
-        choice(name: 'build_type',
-            choices: 'All\nDebug\nRelease',
-            description: 'Select build configuration:')
-
-        booleanParam(name: 'target_iOS',        defaultValue: true, description: '')
-        booleanParam(name: 'target_Android',    defaultValue: true, description: '')
-        booleanParam(name: 'target_OSX',        defaultValue: true, description: '')
-        booleanParam(name: 'target_Windows',    defaultValue: true, description: '')
-
-        text(name: 'build_comments', defaultValue: '', description: '')
-
+       
         gitParameter branch: '.*',
             branchFilter: '.*',
             defaultValue: 'master', 
