@@ -65,8 +65,8 @@ pipeline {
                 echo 'BUILD1'
                 build job: 'HelloWorld_Pipeline', 
                     parameters: [
-                        gitParameter(name: 'BRANCH', value: "${params.BRANCH}")
-                        string(name: 'build_type', value: "${build_type}")
+                        gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
+                        string(name: 'build_type', value: "${params.build_type}")
                     ]        
             }
         }
