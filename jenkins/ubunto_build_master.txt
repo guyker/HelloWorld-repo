@@ -95,9 +95,8 @@ pipeline {
                 echo 'success - guy'
             '''
             script {
-                def voxip_version = readFile('voxipVersion.txt').trim()
                 def env = manager.build.getEnvironment(manager.listener)
-                manager.addShortText("v" + voxip_version + "." + env['BUILD_NUMBER'])
+                manager.addShortText("b" + env['BUILD_NUMBER'])
                 manager.addShortText(env['BRANCH'])
             }
         }
