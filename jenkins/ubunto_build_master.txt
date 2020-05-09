@@ -48,7 +48,7 @@ pipeline {
                 echo "build configuration: ${params.build_type}"
                 echo "Debug logs: ${params.is_log_messages}"
                 echo "Symbols: ${params.is_symbols}"
-                echo "" > tmp_build_comments.txt
+                echo "" > tmp_build_comments1.txt
                 
                 script {
                     if ("${params.build_type}" == "__All") {
@@ -77,7 +77,7 @@ pipeline {
                 success {
                     sh '''
                         #!/bin/bash
-                        echo "XXXX PASS" >> tmp_build_comments.txt"
+                        echo "XXXX PASS" >> tmp_build_comments1.txt"
                     '''
                 }
                 unstable {
@@ -118,7 +118,7 @@ pipeline {
                 #!/bin/bash
                 echo 'success - guy'
                 echo ${BUILD_COMMENTS}
-                cat tmp_build_comments.txt
+                cat tmp_build_comments1.txt
 
             '''
 
