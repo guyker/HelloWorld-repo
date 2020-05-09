@@ -60,14 +60,51 @@ pipeline {
                 }
             }
         }
-        stage('run build 1') {
+        stage('run build 1 RELEASE') {
+            when {
+                expression { params.build_type == 'All' || params.build_type == 'Release' }
+            }
             steps {
-                echo 'BUILD1'
+                echo 'BUILD1 - release'
                 build job: 'HelloWorld_Pipeline', 
                     parameters: [
                         gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
                         string(name: 'build_type', value: "${params.build_type}")
                     ]        
+            }
+        }
+        stage('run build 1 DEBUG') {
+            when {
+                expression { params.build_type == 'All' || params.build_type == 'Debug' }
+            }
+            steps {
+                echo 'BUILD2 - debug'
+                build job: 'HelloWorld_Pipeline', 
+                    parameters: [
+                        gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
+                        string(name: 'build_type', value: "${params.build_type}")
+                    ]        
+            }
+        }
+    }
+    post {
+        success {
+            sh '''
+                #!/bin/bash
+                #git tag -m "$build_comments"  $VOXIP_BUILD_TAG $BRANCH
+                #git push origin refs/tags/$VOXIP_BUILD_TAG
+            '''
+            script {
+                def env = manager.build.getEnvironment(manager.listener)
+                manager.addShortText("b"+ env['BUILD_NUMBER'])
+                manager.addShortText(env['BRANCH'])
+            }
+        }
+        unsuccessful {
+            script {
+                def env = manager.build.getEnvironment(manager.listener)
+                manager.addShortText("Failed")
+                manager.addShortText(env['BRANCH'])
             }
         }
     }
