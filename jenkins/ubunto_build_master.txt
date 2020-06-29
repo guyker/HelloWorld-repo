@@ -121,6 +121,8 @@ pipeline {
                 #!/bin/bash
                 echo 'success - guy'
                 echo ${BUILD_COMMENTS}
+                echo $BUILD_COMMENTS
+                echo $build_comments
                 cat tmp_build_comments1.txt
 
             '''
