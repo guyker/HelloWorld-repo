@@ -43,11 +43,6 @@ pipeline {
 
     stages {
         stage('Config check') {
-            job('example') {
-                properties {
-                    nextBuildNumber(47)
-                }
-            }
             steps {
                 echo 'Build parameters:'
                 echo "build configuration: ${params.build_type}"
@@ -79,7 +74,8 @@ pipeline {
                 build job: 'HelloWorld_Pipeline', 
                     parameters: [
                         gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
-                        string(name: 'build_type', value: "${params.build_type}")
+                        string(name: 'build_type', value: "${params.build_type}"),
+                        string(name: 'parent_build_number', value: "${params.BUILD_NUMBER}")
                     ]        
             }
             post {
