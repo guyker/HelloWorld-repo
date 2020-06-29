@@ -43,6 +43,11 @@ pipeline {
 
     stages {
         stage('Config check') {
+            job('example') {
+                properties {
+                    nextBuildNumber(47)
+                }
+            }
             steps {
                 echo 'Build parameters:'
                 echo "build configuration: ${params.build_type}"
@@ -55,10 +60,6 @@ pipeline {
                 echo "BRANCH2: ${params.BRANCH}"
                 
                 script {
-                    def job = Jenkins.getInstance().getItemByFullName("run build 1 RELEASE", Job.class)
-                    job.nextBuildNumber = 10
-                    job.save()
-                 
                     if ("${params.build_type}" == "__All") {
                     	IS_DEBUG_BUILD=true
                     	RELEASE_BUILD=true
