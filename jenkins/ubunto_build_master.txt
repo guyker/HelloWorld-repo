@@ -48,7 +48,10 @@ pipeline {
                 echo "build configuration: ${params.build_type}"
                 echo "Debug logs: ${params.is_log_messages}"
                 echo "Symbols: ${params.is_symbols}"
-                echo "BRANCH1: ${params.branch}"
+                echo "target_iOS: ${params.target_iOS}"
+                echo "target_Android: ${params.target_Android}"
+                echo "target_OSX: ${params.target_OSX}"
+                echo "target_Windows: ${params.target_Windows}"
                 echo "BRANCH2: ${params.BRANCH}"
                 script {
                     if ("${params.build_type}" == "__All") {
