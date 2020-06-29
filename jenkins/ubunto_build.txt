@@ -40,7 +40,7 @@ pipeline {
                 echo "BRANCH: ${params.BRANCH}"
                 
                 script {
-                    if ("${params.build_type}" == "__All") {
+                    if ("${params.build_type}" == "All") {
                     	IS_DEBUG_BUILD=true
                     	RELEASE_BUILD=true
                         currentBuild.result = 'ABORTED'
