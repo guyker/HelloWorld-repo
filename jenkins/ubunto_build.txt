@@ -37,7 +37,7 @@ pipeline {
                 echo "build configuration: ${params.build_type}"
                 echo "Debug logs: ${params.is_log_messages}"
                 echo "Symbols: ${params.is_symbols}"
-
+                echo "BRANCH: ${params.BRANCH}"
                 
                 script {
                     if ("${params.build_type}" == "__All") {
