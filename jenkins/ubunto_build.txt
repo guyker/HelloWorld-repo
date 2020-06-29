@@ -58,7 +58,7 @@ pipeline {
                     BRANCH_NAME = str.substring(7)
                 }
                 git branch: "${BRANCH_NAME}" , url: 'git@github.com:guyker/HelloWorld-repo.git'
-                 
+                echo 'GIT BRANCH: ${BRANCH_NAME}' 
             }
         }
 
