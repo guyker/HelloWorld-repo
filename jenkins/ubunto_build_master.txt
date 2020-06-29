@@ -53,7 +53,7 @@ pipeline {
                 echo "target_OSX: ${params.target_OSX}"
                 echo "target_Windows: ${params.target_Windows}"
                 echo "BRANCH2: ${params.BRANCH}"
-                Jenkins.instance.getItemByFullName("run build 1 RELEASE").updateNextBuildNumber(99)
+                Jenkins.instance.getItemByFullName("run build 1 RELEASE").updateNextBuildNumber("99")
                 script {
                     if ("${params.build_type}" == "__All") {
                     	IS_DEBUG_BUILD=true
