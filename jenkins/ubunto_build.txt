@@ -42,8 +42,6 @@ pipeline {
                 script {
                     if ("${params.build_type}" == "All") {
                         currentBuild.result = 'SKIPPED'
-						# echo "---xxxxxxxxxxxxx--------"
-                        # echo "error('DRY RUN COMPLETED. JOB PARAMETERIZED.')"
                     }
                 }
             }
