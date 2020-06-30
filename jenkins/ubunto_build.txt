@@ -63,8 +63,8 @@ pipeline {
             steps {
                 sh '''
                     COMPILED_BRANCH="${GIT_BRANCH##origin/}"
-                    PARENT_BUILD=${BUILD_NUMBER}
-                    BUILD_NUMBER = ${parent_build_number}
+                    #PARENT_BUILD=${BUILD_NUMBER}
+                    #BUILD_NUMBER = ${parent_build_number}
                     #git tag -a -f -m "Jenkins Build #NEXT" jenkins-HelloWorld_TAG
                 '''
             }
