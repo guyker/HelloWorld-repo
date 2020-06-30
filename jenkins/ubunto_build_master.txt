@@ -68,7 +68,7 @@ pipeline {
         
         stage('run build 1 RELEASE') {
             when {
-                expression { params.build_type == 'All' || params.build_type == 'Release' }
+                expression { params.build_type == '_All' || params.build_type == 'Release' }
             }
             steps {
                 script {
@@ -144,7 +144,12 @@ pipeline {
                 echo $build_comments
                 echo $build_comments
                 echo ${build_comments}
-                cat tmp_build_comments1.txt
+                echo ${params.build_comments}
+                echo $params.build_comments
+                echo $params.build_comments
+                echo ${params.build_comments}
+                echo "${params.build_comments}"
+                echo "$params.build_comments"
 
             '''
 
