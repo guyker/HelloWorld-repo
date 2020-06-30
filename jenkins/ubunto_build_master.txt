@@ -139,7 +139,7 @@ pipeline {
         success {
             script {
                 env.BUILD_C = {params.build_comments}
-                    env.LS = params.build_comments + "  " + "HELLO " + params.build_type
+                    env.LS = params.build_comments + "  \n\n" + "HELLO " + params.build_type
                     echo "LS = ${env.LS}"                    
             }
             sh '''
