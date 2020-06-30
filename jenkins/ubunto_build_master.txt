@@ -148,6 +148,8 @@ pipeline {
                 echo 'success - guy'
                 echo "HELLO - $LS"
                 tag_name="v2v"$BUILD_NUMBER"_guy"
+                echo "BRANCH---------:$BRANCH"
+                checkout -b <MYBRANCH>
                 git tag -a $tag_name -m "$LS"
                 git push origin --tags
             '''
