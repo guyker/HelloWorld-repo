@@ -140,16 +140,12 @@ pipeline {
             script {
                 env.BUILD_C = {params.build_comments}
                     env.LS = params.build_comments
-                    echo "LS = ${env.LS}"
-                    
-                    sh 'echo $LS'
+                    echo "LS = ${env.LS}"                    
             }
             sh '''
                 #!/bin/bash
                 echo 'success - guy'
-                echo ${build_comments}
-                echo $build_comments
-                echo $LS
+                echo "HELLO - $LS"
             '''
 
         }
