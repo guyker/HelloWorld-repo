@@ -113,9 +113,6 @@ pipeline {
         }
 
         stage ('Build-Release') {
-            when {
-                expression { params.build_type == 'All' || params.build_type == 'Release' }
-            }
             steps {
                 sh '''#!/bin/bash
                 
