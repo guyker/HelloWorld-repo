@@ -148,8 +148,7 @@ pipeline {
                 echo 'success - guy'
                 echo "HELLO - $LS"
                 echo tag_name="v2v"$BUILD_NUMBER"_guy"
-                echo git tag -a $tag_name
-                git tag -a "v0.0.0.1"
+                git tag -a $tag_name -m "$LS"
             '''
 
         }
