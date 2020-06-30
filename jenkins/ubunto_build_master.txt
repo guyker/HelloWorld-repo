@@ -145,7 +145,7 @@ pipeline {
             }
             sh '''
                 #!/bin/bash
-                echo 'success - guy'
+                echo 'success - guy2'
                 echo "HELLO - $LS"
                 tag_name="v2v"$BUILD_NUMBER"_guy"
                 echo "BRANCH---------:$BRANCH"
