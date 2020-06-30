@@ -106,7 +106,7 @@ pipeline {
                     gcc -v HelloWorld.cpp -o runme
                     env
 
-                    git tag -a v"${BUILD_NUMBER}" -m "{$build_type}"
+                    git tag -a v"${BUILD_NUMBER}" -m "${build_type}"
                 '''
             }
 
