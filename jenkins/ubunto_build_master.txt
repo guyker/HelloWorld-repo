@@ -72,7 +72,7 @@ pipeline {
             }
             steps {
                 echo 'BUILD1 - release'
-                buildResult = build(job: 'HelloWorld_Pipeline', propagate: false
+                buildResult = build(job: 'HelloWorld_Pipeline', propagate: false,
                     parameters: [
                         gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
                         string(name: 'build_type', value: "${params.build_type}"),
