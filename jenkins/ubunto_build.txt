@@ -42,6 +42,7 @@ pipeline {
                 script {
                     if ("${params.build_type}" == "All") {
                         currentBuild.result = 'NOT_BUILT'
+                        error('Not Build - guyk')
                         return
                     }
                 }
