@@ -78,7 +78,7 @@ pipeline {
                         string(name: 'parent_build_number', value: "${params.BUILD_NUMBER}")
                     ] 
                  
-                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
+                 catchError(buildResult: 'SKIPPED', stageResult: 'FAILURE')
                     {
                         echo "GUY@@@@@@@@@@@ - build exception!!!!!!"
                     }
@@ -139,7 +139,7 @@ pipeline {
         unsuccessful {
            sh '''
                 #!/bin/bash
-                echo 'success - guy'
+                echo 'un-success - guy'
             '''
         }
     }
