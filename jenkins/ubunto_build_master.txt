@@ -66,9 +66,13 @@ pipeline {
             }
         }
         
-        stage('run build 1 RELEASE') { 
+        stage('run build 1 RELEASE') {
+            when {
+                expression { params.build_type == 'All' || params.build_type == 'Release' }
+            }
+            steps {
                 echo 'BUILD1 - release'
-                buildResult = build(job: 'HelloWorld_Pipeline', propagate: false,
+                b = build(job: 'HelloWorld_Pipeline', propagate: false,
                     parameters: [
                         gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
                         string(name: 'build_type', value: "${params.build_type}"),
@@ -78,7 +82,7 @@ pipeline {
                     echo "First job ABORTED????????????"
                     currentBuild.result = 'SUCCESS' // of FAILURE
                 }
-            
+            }
             post {
                 success {
                     sh '''
