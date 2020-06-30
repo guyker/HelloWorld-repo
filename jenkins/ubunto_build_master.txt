@@ -149,7 +149,7 @@ pipeline {
                 echo "HELLO - $LS"
                 tag_name="v2v"$BUILD_NUMBER"_guy"
                 echo "BRANCH---------:$BRANCH"
-                checkout -b "$BRANCH"
+                git checkout -b "$BRANCH"
                 git tag -a $tag_name -m "$LS"
                 git push origin --tags
             '''
