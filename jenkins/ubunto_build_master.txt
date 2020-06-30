@@ -137,13 +137,14 @@ pipeline {
 
     post {
         success {
+            BUILD_C = params.build_comments
             sh '''
                 #!/bin/bash
                 echo 'success - guy'
                 echo ${build_comments}
                 echo $build_comments
-                echo $build_comments
-                echo ${build_comments}
+                echo $BUILD_C
+                echo ${BUILD_C}
      
                 echo "${build_comments}"
                 echo "$build_comments"
