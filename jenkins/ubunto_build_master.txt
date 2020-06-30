@@ -80,7 +80,7 @@ pipeline {
                  
                  catchError(buildResult: 'SKIPPED', stageResult: 'FAILURE')
                     {
-                        echo "GUY@@@@@@@@@@@ - build exception!!!!!!"
+                        echo "GUY@@@@@@@@@@@ - build exception!!!!!! ${buildResult}"
                     }
             }
             post {
@@ -118,6 +118,10 @@ pipeline {
                         gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
                         string(name: 'build_type', value: "${params.build_type}")
                     ]        
+                    catchError(buildResult: 'SKIPPED', stageResult: 'FAILURE')
+                    {
+                        echo "GUY@@@@@@@@@@@ - build exception!!!!!!"
+                    }
             }
         }
     }
