@@ -83,7 +83,7 @@ pipeline {
                 echo 'BUILD1 result: ${b}'
                 echo b
                 if(b == 'NOT_BUILT') {
-                    echo "First job failed"
+                    echo "First job no run "
                     currentBuild.result = 'SUCCESS' // of FAILURE
                 }
                 else
@@ -120,7 +120,7 @@ pipeline {
 
         stage('run build 1 DEBUG') {
             when {
-                expression { params.build_type == '__All' || params.build_type == 'Debug' }
+                expression { params.build_type == 'All' || params.build_type == 'Debug' || params.build_type == 'Release' }
             }
             steps {
                 echo 'BUILD2 - debug'
