@@ -71,18 +71,17 @@ pipeline {
             }
             steps {
                 echo 'BUILD1 - release'
-                try {
                 build job: 'HelloWorld_Pipeline', 
                     parameters: [
                         gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
                         string(name: 'build_type', value: "${params.build_type}"),
                         string(name: 'parent_build_number', value: "${params.BUILD_NUMBER}")
                     ] 
-                }
-                 catch (err){
-                    echo "XXXXXXXXXXXXXxxxx - system-check-flow failed"
-                    echo "guyguyguy: ${err}"
-                }               
+                 
+                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
+                    {
+                        echo "GUY@@@@@@@@@@@ - build exception!!!!!!"
+                    }
             }
             post {
                 success {
