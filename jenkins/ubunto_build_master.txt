@@ -55,35 +55,6 @@ pipeline {
                 echo "BRANCH2: ${params.BRANCH}"
                 
                 script {
-
-import hudson.model.*
-
-def getJobs() {
-    def hi = Hudson.instance
-    return hi.getItems(Job)
-}
-
-def setNextBuildNumber() {
-    def jobs = getJobs()
-    def buildJobs = []
-    def maxBuildNumber = 0
-    (jobs).each { job ->
-        if (job.displayName == "run build 1 RELEASE") { 
-            buildJobs.add(job)  
-            if(maxBuildNumber < job.nextBuildNumber)
-                maxBuildNumber = job.nextBuildNumber
-        }
-    }
-    (buildJobs).each { build ->
-        build.nextBuildNumber = maxBuildNumber
-        build.save()
-    } 
-    
-    return maxBuildNumber
-}
-def nextBuildNum = setNextBuildNumber()
-def args = nextBuildNum
-
                     if ("${params.build_type}" == "__All") {
                     	IS_DEBUG_BUILD=true
                     	RELEASE_BUILD=true
