@@ -108,6 +108,7 @@ pipeline {
 
                 tag_name="v"$BUILD_NUMBER"_b"
                 build_comments="THIS IS YOUR COMMENTS: "$BUILD_NUMBER" - "$params.build_type
+                echo git tag -a $tag_name -m $build_comments
                 git tag -a $tag_name -m $build_comments
                 '''
             }
