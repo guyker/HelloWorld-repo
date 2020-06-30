@@ -72,16 +72,12 @@ pipeline {
             }
             steps {
                 echo 'BUILD1 - release'
-                b = build(job: 'HelloWorld_Pipeline', propagate: false,
+                build(job: 'HelloWorld_Pipeline', propagate: false,
                     parameters: [
                         gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
                         string(name: 'build_type', value: "${params.build_type}"),
                         string(name: 'parent_build_number', value: "${params.BUILD_NUMBER}")
-                    ]).result
-                if(b == 'ABORTED') {
-                    echo "First job ABORTED????????????"
-                    currentBuild.result = 'SUCCESS' // of FAILURE
-                }
+                    ])
             }
             post {
                 success {
