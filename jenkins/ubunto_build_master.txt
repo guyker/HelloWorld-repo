@@ -79,13 +79,13 @@ pipeline {
                         string(name: 'build_type', value: "${params.build_type}"),
                         string(name: 'parent_build_number', value: "${params.BUILD_NUMBER}")
                     ]).result
-                }
+                
                 echo 'BUILD1 result: ${b}'
                 if(b == 'ABORTED') {
                     echo "First job failed"
                     currentBuild.result = 'UNSTABLE' // of FAILURE
                 }
-        }
+                }
             }
             post {
                 success {
