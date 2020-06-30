@@ -106,7 +106,9 @@ pipeline {
                     gcc -v HelloWorld.cpp -o runme
                     env
 
-                    git tag -a v${BUILD_NUMBER} -m 'THIS IS my commnents build type:'${params.build_type}
+                tag_name="v"$BUILD_NUMBER"_b"
+                tag_comment="THIS IS YOUR COMMENTS: "$BUILD_NUMBER" - "$params.build_type
+       
                 '''
             }
 
