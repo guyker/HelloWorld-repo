@@ -96,6 +96,7 @@ pipeline {
                     sh '''
                         #!/bin/bash
                         echo "XXXX PASS" >> tmp_build_comments1.txt
+
                     '''
                 }
                 unstable {
@@ -146,6 +147,8 @@ pipeline {
                 #!/bin/bash
                 echo 'success - guy'
                 echo "HELLO - $LS"
+                tag_name="__v"$BUILD_NUMBER"_guy"
+                git tag -a $tag_name
             '''
 
         }

@@ -77,6 +77,9 @@ pipeline {
                 expression { params.build_type == 'All' || params.build_type == 'Release' }
             }
             steps {
+                script {
+                    env.BC = params.build_type
+                }
                 sh '''#!/bin/bash
   				
   					if [ "$build_type" == "ALL" ] || [ "$build_type" == "Debug" ]
@@ -109,7 +112,7 @@ pipeline {
                 tag_name="v"$BUILD_NUMBER"_b"
                 build_comments="THIS IS YOUR COMMENTS: "$BUILD_NUMBER" - ${build_type} = ${params.build_type}"
                 echo git tag -a $tag_name -m "${build_comments}" - ${build_comments}
-                git tag -a $tag_name -m "${build_comments}"
+                echo git tag -a $tag_name -m "HELLO - $BC"
                 '''
             }
 
