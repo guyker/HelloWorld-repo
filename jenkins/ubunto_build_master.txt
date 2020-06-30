@@ -71,13 +71,15 @@ pipeline {
                 expression { params.build_type == 'All' || params.build_type == 'Release' }
             }
             steps {
+                script {
                 echo 'BUILD1 - release'
-                build(job: 'HelloWorld_Pipeline', propagate: false,
+                b = build(job: 'HelloWorld_Pipeline', propagate: false,
                     parameters: [
                         gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
                         string(name: 'build_type', value: "${params.build_type}"),
                         string(name: 'parent_build_number', value: "${params.BUILD_NUMBER}")
-                    ])
+                    ]).result
+                }
             }
             post {
                 success {
