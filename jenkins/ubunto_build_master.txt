@@ -83,7 +83,7 @@ pipeline {
                 echo 'BUILD1 result: ${b}'
                 if(b == 'ABORTED') {
                     echo "First job failed"
-                    currentBuild.result = 'UNSTABLE' // of FAILURE
+                    currentBuild.result = 'SUCCESS' // of FAILURE
                 }
                 }
             }
