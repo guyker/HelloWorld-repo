@@ -66,11 +66,7 @@ pipeline {
             }
         }
         
-        stage('run build 1 RELEASE') {
-            when {
-                expression { params.build_type == 'All' || params.build_type == 'Release' }
-            }
-            steps {
+        stage('run build 1 RELEASE') { 
                 echo 'BUILD1 - release'
                 buildResult = build(job: 'HelloWorld_Pipeline', propagate: false,
                     parameters: [
@@ -82,11 +78,7 @@ pipeline {
                     echo "First job ABORTED????????????"
                     currentBuild.result = 'SUCCESS' // of FAILURE
                 }
-                 catchError(buildResult: 'ABORTED', stageResult: 'FAILURE')
-                    {
-                        echo "GUY@@@@@@@@@@@ - build exception!!!!!! ${buildResult}"
-                    }
-            }
+            
             post {
                 success {
                     sh '''
