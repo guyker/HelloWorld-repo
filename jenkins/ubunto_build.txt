@@ -38,10 +38,10 @@ pipeline {
                 echo "Debug logs: ${params.is_log_messages}"
                 echo "Symbols: ${params.is_symbols}"
                 echo "BRANCH: ${params.BRANCH}"
-                echo "IS BUILD: ${params.target_Android}"
+                echo "IS BUILD: ${params.is_run_build}"
                 
                 script {
-                    if ("${params.target_Android}" == "false") {
+                    if ("${params.is_run_build}" == "false") {
                         currentBuild.result = 'NOT_BUILT'
                         error('Not Build - guyk')
                         return
