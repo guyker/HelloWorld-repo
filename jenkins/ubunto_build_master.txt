@@ -114,7 +114,7 @@ pipeline {
 
         stage('run build 1 DEBUG') {
             when {
-                expression { params.build_type == 'All' || params.build_type == 'Debug' }
+                expression { params.build_type == '__All' || params.build_type == 'Debug' }
             }
             steps {
                 echo 'BUILD2 - debug'
