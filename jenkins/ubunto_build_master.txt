@@ -81,6 +81,7 @@ pipeline {
                     ]).result
                 
                 echo 'BUILD1 result: ${b}'
+                echo b
                 if(b == 'SKIPPED') {
                     echo "First job failed"
                     currentBuild.result = 'SUCCESS' // of FAILURE
