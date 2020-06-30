@@ -80,9 +80,6 @@ pipeline {
                         string(name: 'is_run_build', value: "${params.target_Android}"),
                         string(name: 'parent_build_number', value: "${params.BUILD_NUMBER}")
                     ]).result
-                
-                echo 'BUILD1 result: ${b}'
-                echo b
                 if(b == 'NOT_BUILT') {
                     echo "First job no run "
                     currentBuild.result = 'SUCCESS' // of FAILURE
@@ -143,8 +140,8 @@ pipeline {
             sh '''
                 #!/bin/bash
                 echo 'success - guy'
-                echo ${BUILD_COMMENTS}
-                echo $BUILD_COMMENTS
+                echo ${build_comments}
+                echo $build_comments
                 echo $build_comments
                 echo ${build_comments}
                 cat tmp_build_comments1.txt
