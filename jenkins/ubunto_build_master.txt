@@ -72,6 +72,12 @@ pipeline {
             }
             steps {
                 script {
+                    import hudson.model.*
+
+                    def getJobs() {
+                     def hi = Hudson.instance
+                      return hi.getItems(Job)
+                    }
                 echo 'BUILD1 - release'
                 b = build(job: 'HelloWorld_Pipeline', propagate: false,
                     parameters: [
