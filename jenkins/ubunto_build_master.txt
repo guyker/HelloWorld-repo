@@ -72,12 +72,6 @@ pipeline {
             }
             steps {
                 script {
-                    import hudson.model.*
-
-                    def getJobs() {
-                     def hi = Hudson.instance
-                      return hi.getItems(Job)
-                    }
                 echo 'BUILD1 - release'
                 b = build(job: 'HelloWorld_Pipeline', propagate: false,
                     parameters: [
@@ -86,6 +80,12 @@ pipeline {
                         string(name: 'parent_build_number', value: "${params.BUILD_NUMBER}")
                     ]).result
                 }
+                echo 'BUILD1 result: ${b}'
+                if(b == 'ABORTED') {
+                    echo "First job failed"
+                    currentBuild.result = 'UNSTABLE' // of FAILURE
+                }
+        }
             }
             post {
                 success {
