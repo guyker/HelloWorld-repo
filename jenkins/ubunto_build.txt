@@ -41,7 +41,7 @@ pipeline {
                 
                 script {
                     if ("${params.build_type}" == "All") {
-                        currentBuild.result = 'ABORTED'
+                        currentBuild.result = 'SKIPPED'
                         return
                     }
                 }
