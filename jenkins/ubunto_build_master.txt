@@ -65,6 +65,7 @@ pipeline {
                 }
             }
         }
+        try {
         stage('run build 1 RELEASE') {
             when {
                 expression { params.build_type == 'All' || params.build_type == 'Release' }
@@ -106,6 +107,10 @@ pipeline {
                     }
                 }
             }
+        }
+         } catch (Exception e) {
+            echo "Stage failed, but we continue"  
+            echo "Stage failed, but we continue ${e}"  
         }
         stage('run build 1 DEBUG') {
             when {
