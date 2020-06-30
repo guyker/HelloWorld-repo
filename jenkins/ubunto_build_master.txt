@@ -138,7 +138,7 @@ pipeline {
     post {
         success {
             script {
-                env.BUILD_C = params.build_comments
+                env.BUILD_C = {params.build_comments}
                     env.LS = params.build_comments
                     echo "LS = ${env.LS}"
                     
@@ -149,12 +149,7 @@ pipeline {
                 echo 'success - guy'
                 echo ${build_comments}
                 echo $build_comments
-                echo $env.BUILD_C
-                echo ${env.BUILD_C}
-     
-                echo "${build_comments}"
-                echo "$build_comments"
-
+                echo $LS
             '''
 
         }
