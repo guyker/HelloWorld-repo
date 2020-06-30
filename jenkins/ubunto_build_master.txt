@@ -78,7 +78,7 @@ pipeline {
                         string(name: 'parent_build_number', value: "${params.BUILD_NUMBER}")
                     ] 
                  
-                 catchError(buildResult: 'SKIPPED', stageResult: 'FAILURE')
+                 catchError(buildResult: 'ABORTED', stageResult: 'FAILURE')
                     {
                         echo "GUY@@@@@@@@@@@ - build exception!!!!!! ${buildResult}"
                     }
@@ -118,7 +118,7 @@ pipeline {
                         gitParameter(name: 'BRANCH', value: "${params.BRANCH}"),
                         string(name: 'build_type', value: "${params.build_type}")
                     ]        
-                    catchError(buildResult: 'SKIPPED', stageResult: 'FAILURE')
+                    catchError(buildResult: 'ABORTED', stageResult: 'FAILURE')
                     {
                         echo "GUY@@@@@@@@@@@ - build exception!!!!!!"
                     }
