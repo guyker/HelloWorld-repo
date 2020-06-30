@@ -137,7 +137,9 @@ pipeline {
 
     post {
         success {
-            BUILD_C = params.build_comments
+            script {
+                BUILD_C = params.build_comments
+            }
             sh '''
                 #!/bin/bash
                 echo 'success - guy'
