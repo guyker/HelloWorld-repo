@@ -81,7 +81,10 @@ pipeline {
                     env.BC = params.build_type
                 }
                 sh '''#!/bin/bash
-  				
+                    if [ "$build_type" = "ALL" ]; then
+                        echo "ddpppppppppppppYES!!!!!!!!!!"
+                    fi
+
                     if [ "$build_type" = "ALL" ] || [ "$build_type" = "Debug" ]; then
                         echo "foo---DEBUG!!!!!!!!!!!!!"
                     elif [ "$build_type" = "ALL" ] || [ "$build_type" = "Release" ]; then
