@@ -68,7 +68,7 @@ pipeline {
         
         stage('run build 1 RELEASE') {
             when {
-                expression { params.build_type == '_All' || params.build_type == 'Release' }
+                expression { params.build_type == 'All' || params.build_type == 'Release' || params.build_type == 'Debug' }
             }
             steps {
                 script {
