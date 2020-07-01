@@ -85,7 +85,9 @@ pipeline {
                     case $build_type in
                         "Release") echo "======== RELEASE ========";;
                         "Debug") echo "======== DEBUG ========";;
-                        *) echo "ALLLLLLLL-========";;
+                        *) echo "ALLLLLLLL-========"
+                        echo "ALLLLLLLL-========2"
+                        ls;;
                     esac
 
   					if [ "$build_type" == "ALL" ] || [ "$build_type" == "Debug" ]
