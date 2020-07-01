@@ -86,6 +86,8 @@ pipeline {
                     if [ "$btype" = "ALL" ]
                     then
                         echo "ddpppppppppppppYES!!!!!!!!!!"
+                    else
+                        echo "NO----------------$btype - $build_type"
                     fi
 
                     if [ "$build_type" = "ALL" ] || [ "$build_type" = "Debug" ]; then
