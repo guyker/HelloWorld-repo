@@ -82,19 +82,10 @@ pipeline {
                     env.BC = params.build_type
                 }
                 sh '''#!/bin/bash
-
-                    echo $BBB
-                    echo $env.BBB
-                    echo env.BBB
-                    echo "$BBB"
-                    echo "$env.BBB"
-                    btype==$build_type
                     if [ $btype = "ALL" ]
                     then
                         echo "ddpppppppppppppYES!!!!!!!!!!"
                     else
-                        echo "NO----------------$btype - $build_type"
-                        echo $btype
                         echo $build_type
                         echo ----guy
                     fi

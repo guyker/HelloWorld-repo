@@ -55,7 +55,6 @@ pipeline {
                 echo "BRANCH2: ${params.BRANCH}"
                 
                 script {
-                    BBB=${params.build_type}"
                     if ("${params.build_type}" == "__All") {
                     	IS_DEBUG_BUILD=true
                     	RELEASE_BUILD=true
