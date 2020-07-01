@@ -74,7 +74,7 @@ pipeline {
 
         stage ('Build-Debug') {
             when {
-                expression { params.build_type == 'All' || params.build_type == 'Release' }
+                expression { params.build_type == 'All' || params.build_type == 'Release' || params.build_type == 'Debug'}
             }
             steps {
                 script {
@@ -82,6 +82,11 @@ pipeline {
                 }
                 sh '''#!/bin/bash
   				
+                    case $build_type in
+                        "Release") echo "======== RELEASE ========";;
+                        "Debug") echo "======== DEBUG ========";;
+                        *) echo "ALLLLLLLL-========;;
+                    esac
   					if [ "$build_type" == "ALL" ] || [ "$build_type" == "Debug" ]
   					then
   				  	    echo "foo---DEBUG!!!!!!!!!!!!!"
