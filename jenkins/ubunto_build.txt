@@ -83,7 +83,7 @@ pipeline {
                 sh '''#!/bin/bash
 
                     btype==$build_type
-                    if [ "$btype" = "ALL" ]
+                    if [ $btype = "ALL" ]
                     then
                         echo "ddpppppppppppppYES!!!!!!!!!!"
                     else
