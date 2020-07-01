@@ -82,9 +82,9 @@ pipeline {
                 }
                 sh '''#!/bin/bash
   				
-                    if [ "$build_type" == "ALL" ] || [ "$build_type" == "Debug" ]; then
+                    if [ "$build_type" = "ALL" ] || [ "$build_type" = "Debug" ]; then
                         echo "foo---DEBUG!!!!!!!!!!!!!"
-                    elif [ "$build_type" == "ALL" ] || [ "$build_type" == "Release" ]; then
+                    elif [ "$build_type" = "ALL" ] || [ "$build_type" = "Release" ]; then
                         echo "foo---RELEASE!!!!!!!!!!!!!"
                     fi
 
