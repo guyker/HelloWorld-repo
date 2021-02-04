@@ -41,7 +41,6 @@ pipeline {
                 echo "IS BUILD: ${params.is_run_build}"
                 
                 script {
-                    BBB=${params.build_type}"
                     if ("${params.is_run_build}" == "false") {
                         currentBuild.result = 'NOT_BUILT'
                         error('Not Build - guyk')
