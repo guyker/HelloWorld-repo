@@ -151,8 +151,8 @@ pipeline {
                 echo "BRANCH--------s-:$BRANCH"
                 git clean -xfd
                 git checkout -f "$BRANCH"
-                git tag -a $tag_name -m "comment-guy"
-                git push origin --tags
+                #git tag -a $tag_name -m "comment-guy"
+                #git push origin --tags
             '''
 
         }
