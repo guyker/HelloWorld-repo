@@ -56,7 +56,7 @@ pipeline {
                     def str = params.BRANCH
                     BRANCH_NAME = str.substring(7)
                 }
-                git branch: "${BRANCH_NAME}" , credentialsId: 'guykeren89', url: 'git@github.com:guyker/HelloWorld-repo.git'
+                git branch: "${BRANCH_NAME}" , url: 'git@github.com:guyker/HelloWorld-repo.git'
                 echo 'GIT BRANCH: ${BRANCH_NAME}' 
             }
         }
