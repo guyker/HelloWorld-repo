@@ -140,7 +140,7 @@ pipeline {
         success {
             script {
                 env.BUILD_C = {params.build_comments}
-                    env.LS = params.build_comments + "  \n\n" + "HELLO " + params.build_type
+                    env.LS = params.build_comments + "  \n\n" + "HELLO, build_type: " + params.build_type
                     echo "LS = ${env.LS}"                    
             }
             sh '''
@@ -151,7 +151,7 @@ pipeline {
                 echo "BRANCH--------s-:$BRANCH"
                 git clean -xfd
                 git checkout -f "$BRANCH"
-                git tag -a $tag_name -m "$LS"
+                git tag -a $tag_name -m "comment-guy"
                 git push origin --tags
             '''
 
